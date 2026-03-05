@@ -1,0 +1,93 @@
+/* App background */
+.stApp {
+    background: linear-gradient(135deg, #4c8ca8, #4c8ca8, #4c8ca8);
+    color: #fbfbfb;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #6aa8d7;
+    font-weight: 700;
+}
+
+/* Buttons */
+.stButton>button {
+    background: linear-gradient(135deg, #f9d342, #f39c12);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    border: none;
+}
+
+.stButton>button:hover {
+    transform: scale(1.05);
+}
+
+/* Cards */
+.card {
+    background: rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* Text areas & upload box */
+textarea, .stFileUploader {
+    background-color: rgba(38, 93, 220, 0.421);
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to result sections */
+.animate {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Card-style containers */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: scale(1.01);
+    transition: 0.3s ease;
+}
+
+.panel {
+    background: #c77474;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.panel-header {
+    background: #8f96b9;
+    padding: 12px 18px;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.panel-body {
+    padding: 18px;
+}
