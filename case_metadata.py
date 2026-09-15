@@ -1,37 +1,32 @@
-'''import re
+import re
+
 
 def extract_judge_and_court(text):
-   court = "Not Found"
-
-    # Only check first 50 lines to speed up
-    lines = text.split("\n")[:50]
-    text_head = " ".join(lines)
-
-    # Judge detection patterns
-    judge_patterns = [
-        r"Hon[’']?ble\s+Mr\.?\s+Justice\s+([A-Z][a-zA-Z\s]+)",  # Hon'ble Mr. Justice X
-        r"Hon[’']?ble\s+Justice\s+([A-Z][a-zA-Z\s]+)",           # Hon'ble Justice X
-        r"Justice\s+([A-Z][a-zA-Z\s]+)",                          # Justice X
-    ]
+    header = " ".join(text.splitlines()[:60])
+    judge = "Not detected"
+    court = "Not detected"
+    judge_patterns = (
+        r"Hon['’]?ble\s+(?:Mr\.?\s+)?Justice\s+([A-Z][A-Za-z .'-]+?)(?=\s+(?:Date|Dated)\b|$)",
+        r"Justice\s+([A-Z][A-Za-z .'-]+?)(?=\s+(?:Date|Dated)\b|$)",
+    )
+    court_patterns = (
+        r"Supreme Court of India", r"High Court of [A-Za-z ]+",
+        r"District Court of [A-Za-z ]+", r"Family Court of [A-Za-z ]+",
+        r"Labour Court of [A-Za-z ]+",
+    )
     for pattern in judge_patterns:
-        match = re.search(pattern, text_head)
+        match = re.search(pattern, header, re.IGNORECASE)
         if match:
-            judge = match.group(1)
+            judge = match.group(1).strip()
             break
-
-    # Court detection patterns
-    court_patterns = [
-        r"(Supreme Court of India)",
-        r"(High Court of [A-Za-z\s]+)",
-        r"(District Court of [A-Za-z\s]+)",
-        r"(Family Court of [A-Za-z\s]+)",
-        r"(Labour Court of [A-Za-z\s]+)"
-    ]
     for pattern in court_patterns:
-        match = re.search(pattern, text_head)
+        match = re.search(pattern, header, re.IGNORECASE)
         if match:
-            court = match.group(1)
+            court = match.group(0).strip()
             break
-
     return judge, court
-'''
+
+
+def extract_case_date(text):
+    match = re.search(r"\b(?: dated |date[:\s]+)?(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})\b", text, re.IGNORECASE)
+    return match.group(1) if match else "Not detected"
