@@ -1,0 +1,7 @@
+streamlit>=1.32
+PyPDF2>=3.0
+matplotlib>=3.7
+transformers>=4.40
+torch>=2.0
+numpy>=2.0
+pandas>=4.5
